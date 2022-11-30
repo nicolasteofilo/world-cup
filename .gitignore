@@ -1,1 +1,11 @@
+# libraries
 node_modules
+
+# database
+prisma/dev.db
+prisma/dev.db-journal
+
+# enviroment variable
+.env
+.env.local
+.env.prod
