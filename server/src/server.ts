@@ -18,9 +18,15 @@ async function start() {
     origin: true,
   });
 
-  fastify.get("/pools/count", async () => {
-    const count = await prisma.pool.count();
-    return { count };
+  fastify.get("/pools/count", async (_, reply) => {
+    try {
+      const count = await prisma.pool.count();
+      return reply.status(200).send({ statusCode: 200, count });
+    } catch (error) {
+      return reply
+        .status(500)
+        .send({ statusCode: 500, error: "Internal server error" });
+    }
   });
 
   fastify.post("/pools", async (request, reply) => {
@@ -42,13 +48,12 @@ async function start() {
           code,
         },
       });
+      return reply.status(201).send({ statusCode: 201, code });
     } catch (error) {
       return reply
         .status(500)
         .send({ statusCode: 500, error: "Internal server error" });
     }
-
-    return reply.status(201).send({ statusCode: 201, code });
   });
 
   await fastify.listen({ port: 3333 });
