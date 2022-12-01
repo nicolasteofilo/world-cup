@@ -1,6 +1,6 @@
-import { StatusBar } from "expo-status-bar";
+import * as NavigationBar from 'expo-navigation-bar';
 
-import { NativeBaseProvider, Center, Text } from "native-base";
+import { NativeBaseProvider, StatusBar } from "native-base";
 import { THEME } from "./src/styles/theme";
 import {
   useFonts,
@@ -10,9 +10,11 @@ import {
 } from "@expo-google-fonts/roboto";
 
 import { Loading } from "./src/components/Loading";
+import { SignIn } from "./src/screens/SignIn";
 
 export default function App() {
-  const [fontsLoaded] = useFonts({
+  NavigationBar.setBackgroundColorAsync("#202024");
+  const [isLoadingFonts] = useFonts({
     useFonts,
     Roboto_400Regular,
     Roboto_500Medium,
@@ -21,16 +23,13 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      {fontsLoaded ? (
-        <Loading />
-      ) : (
-        <Center flex={1} bgColor="gray.800">
-          <Text color="gray.100">
-            Open up App.js to start working on your app!
-          </Text>
-          <StatusBar style="auto" />
-        </Center>
-      )}
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
+
+      {isLoadingFonts ? <Loading /> : <SignIn />}
     </NativeBaseProvider>
   );
 }
