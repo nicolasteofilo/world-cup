@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "tsx watch src/server.ts"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^9.2.2",
     "prisma": "^4.7.0",
