@@ -29,6 +29,28 @@ async function start() {
     }
   });
 
+  fastify.get("/users/count", async (_, reply) => {
+    try {
+      const count = await prisma.user.count();
+      return reply.status(200).send({ statusCode: 200, count });
+    } catch (error) {
+      return reply
+        .status(500)
+        .send({ statusCode: 500, error: "Internal server error" });
+    }
+  });
+
+  fastify.get("/guesses/count", async (_, reply) => {
+    try {
+      const count = await prisma.guess.count();
+      return reply.status(200).send({ statusCode: 200, count });
+    } catch (error) {
+      return reply
+        .status(500)
+        .send({ statusCode: 500, error: "Internal server error" });
+    }
+  });
+
   fastify.post("/pools", async (request, reply) => {
     const { title }: any = request.body;
 
