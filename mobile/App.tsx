@@ -12,6 +12,7 @@ import {
 import { Loading } from "./src/components/Loading";
 
 import { SignIn } from "./src/screens/SignIn";
+import { NewPool } from "./src/screens/NewPool";
 
 import {AuthContextProvider} from './src/contexts/AuthContext';
 
@@ -33,7 +34,7 @@ export default function App() {
           translucent
         />
 
-        {isLoadingFonts ? <Loading /> : <SignIn />}
+        {isLoadingFonts ? <Loading /> : <NewPool />}
       </AuthContextProvider>
     </NativeBaseProvider>
   );
