@@ -10,7 +10,10 @@ import {
 } from "@expo-google-fonts/roboto";
 
 import { Loading } from "./src/components/Loading";
+
 import { SignIn } from "./src/screens/SignIn";
+
+import {AuthContextProvider} from './src/contexts/AuthContext';
 
 export default function App() {
   NavigationBar.setBackgroundColorAsync("#202024");
@@ -23,13 +26,15 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor="transparent"
-        translucent
-      />
+      <AuthContextProvider>
+         <StatusBar
+          barStyle="light-content"
+          backgroundColor="transparent"
+          translucent
+        />
 
-      {isLoadingFonts ? <Loading /> : <SignIn />}
+        {isLoadingFonts ? <Loading /> : <SignIn />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 }
