@@ -11,19 +11,13 @@ import {
 
 import { Loading } from "./src/components/Loading";
 
-import { SignIn } from "./src/screens/SignIn";
-import { NewPool } from "./src/screens/NewPool";
-
 import {AuthContextProvider} from './src/contexts/AuthContext';
+
+import { Routes } from "./src/routes";
 
 export default function App() {
   NavigationBar.setBackgroundColorAsync("#202024");
-  const [isLoadingFonts] = useFonts({
-    useFonts,
-    Roboto_400Regular,
-    Roboto_500Medium,
-    Roboto_700Bold,
-  });
+  const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_500Medium, Roboto_700Bold });
 
   return (
     <NativeBaseProvider theme={THEME}>
@@ -34,7 +28,7 @@ export default function App() {
           translucent
         />
 
-        {isLoadingFonts ? <Loading /> : <NewPool />}
+        {fontsLoaded ? <Routes /> : <Loading />}
       </AuthContextProvider>
     </NativeBaseProvider>
   );
