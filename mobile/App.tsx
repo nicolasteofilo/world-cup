@@ -14,6 +14,7 @@ import { Loading } from "./src/components/Loading";
 import {AuthContextProvider} from './src/contexts/AuthContext';
 
 import { Routes } from "./src/routes";
+import { NewPool } from "./src/screens/NewPool";
 
 export default function App() {
   NavigationBar.setBackgroundColorAsync("#202024");

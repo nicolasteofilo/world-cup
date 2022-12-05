@@ -6,7 +6,7 @@ import { Button } from "../components/Button";
 
 import Logo from "../assets/logo.svg";
 
-export function NewPool() {
+export function FindPool() {
   return (
     <VStack flex={1} bgColor="gray.900">
       <Header title="Criar novo bolão" onShare={() => {}} /> 

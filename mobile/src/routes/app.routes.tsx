@@ -5,6 +5,7 @@ import { useTheme } from "native-base";
 
 import { SignIn } from "../screens/SignIn";
 import { NewPool } from "../screens/NewPool";
+import { FindPool } from "../screens/FindPool";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -38,6 +39,11 @@ export function AppRoutes() {
             tabBarLabel: 'Novo bolão'
           }}
         />
+        <Screen 
+          name="find"
+          component={FindPool}
+          options={{ tabBarButton: () => null }}
+      />
     </Navigator>
   )
 }
