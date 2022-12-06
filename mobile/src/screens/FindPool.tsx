@@ -4,8 +4,6 @@ import { Header } from "../components/Header";
 import { Input } from "../components/Input"
 import { Button } from "../components/Button";
 
-import Logo from "../assets/logo.svg";
-
 export function FindPool() {
   return (
     <VStack flex={1} bgColor="gray.900">

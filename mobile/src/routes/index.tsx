@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native"
 import { useAuth } from "../hooks/useAuth";
 
 import { SignIn } from "../screens/SignIn";
-import { FindPool } from "../screens/FindPool";
+import { Pools } from "../screens/Pools";
 import { AppRoutes } from "./app.routes";
 
 export function Routes() {
@@ -13,7 +13,7 @@ export function Routes() {
   return (
     <Box flex={1} bgColor="gray.900">
       <NavigationContainer>
-        {user.name ? <AppRoutes /> : <FindPool />}
+        {user.name ? <AppRoutes /> : <Pools />}
       </NavigationContainer>
     </Box>
   )
