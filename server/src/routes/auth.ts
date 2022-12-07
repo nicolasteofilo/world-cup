@@ -1,8 +1,23 @@
 import { FastifyInstance } from "fastify";
+import { authenticatePlugin } from "../plugins/authenticate";
+
 import { prisma } from "../lib/prisma";
 import fetch from "node-fetch";
 
 export async function authRoutes(fastify: FastifyInstance) {
+  fastify.get('/me', {
+    onRequest: [authenticatePlugin],
+  }, async (request, reply) => {
+    try {
+      return { user: request.user }
+    } catch (error) {
+      console.error(error)
+      return reply
+        .status(500)
+        .send({ statusCode: 500, error: "Internal server error" });
+    }
+  })
+
   fastify.post('/users', async (request, reply) => {
     const { access_token }: any = request.body;
     
