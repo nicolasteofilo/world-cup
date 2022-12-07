@@ -23,7 +23,7 @@ export async function authRoutes(fastify: FastifyInstance) {
 
       console.log({ userResponse })
 
-      const { id, email, name, picture } = await userResponse.json();
+      const { id, email, name, picture }: any = await userResponse.json();
       const userInfo = {
         id,
         email,
@@ -50,7 +50,15 @@ export async function authRoutes(fastify: FastifyInstance) {
         })
       }
 
-      return reply.status(200).send({ statusCode: 201, user });
+      const token = fastify.jwt.sign({
+        name: user.name,
+        avatarUrl: user.avatarUrl
+      }, {
+        sub: user.id,
+        expiresIn: '7 days'
+      })
+
+      return reply.status(200).send({ statusCode: 201, user, token });
     } catch (error) {
       console.error(error)
       return reply
