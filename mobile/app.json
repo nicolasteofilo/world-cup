@@ -2,11 +2,11 @@
   "expo": {
     "name": "copa-2022",
     "slug": "copa-2022",
-    "schema": "copa-2022",
+    "scheme": "copa-2022",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",

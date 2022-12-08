@@ -5,14 +5,12 @@ import { api } from '../services/api';
 
 import { Loading } from './Loading';
 import { Game, GameProps } from '../components/Game';
-import { EmptyMyPoolList } from './EmptyMyPoolList';
 
 interface Props {
   poolId: string;
-  code: string;
 }
 
-export function Guesses({ poolId, code }: Props) {
+export function Guesses({ poolId }: Props) {
   const [isLoading, setIsLoading] = useState(true);
   const [games, setGames] = useState<GameProps[]>([]);
   const [firstTeamPoints, setFirstTeamPoints] = useState('');
@@ -26,6 +24,7 @@ export function Guesses({ poolId, code }: Props) {
 
       const response = await api.get(`/pools/${poolId}/games`);
       setGames(response.data.games);
+      console.log(response.data.games);
     } catch (error) {
 
       toast.show({
@@ -40,7 +39,7 @@ export function Guesses({ poolId, code }: Props) {
 
   async function handleGuessConfirm(gameId: string) {
     try {
-      if (!firstTeamPoints.trim() || !secondTeamPoints.trim()) {
+      if (!firstTeamPoints || !secondTeamPoints) {
         return toast.show({
           title: 'Informe o placar para palpitar',
           placement: 'top',
@@ -54,7 +53,7 @@ export function Guesses({ poolId, code }: Props) {
       });
 
       toast.show({
-        title: 'Palpite realizado com sucesso!',
+        title: 'Palpite realizado com sucesso',
         placement: 'top',
         bgColor: 'green.500'
       });
@@ -93,7 +92,6 @@ export function Guesses({ poolId, code }: Props) {
         />
       )}
       _contentContainerStyle={{ pb: 10 }}
-      ListEmptyComponent={() => <EmptyMyPoolList code={code} />}
     />
   );
 }
