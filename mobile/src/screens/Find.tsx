@@ -11,7 +11,6 @@ export function Find() {
       <Header title="Buscar por código" showBackButton />
 
       <VStack mt={8} mx={5} alignItems="center">
-
         <Heading fontFamily="heading" color="white" fontSize="xl" mb={8} textAlign="center">
           Encontre um bolão através de{'\n'}
           seu código único
